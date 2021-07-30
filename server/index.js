@@ -4,6 +4,10 @@ if (process.env.NODE_ENV !== 'production') {
 
 const express = require('express');
 const app = express();
+const connectDB = require('./config/database');
+
+// DATABASE CONNECTION
+connectDB();
 
 // MIDDLEWARE
 app.use(express.json());
