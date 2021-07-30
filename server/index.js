@@ -5,12 +5,14 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const app = express();
 const connectDB = require('./config/database');
+const errorMiddleware = require('./middlewares/errors');
 
 // DATABASE CONNECTION
 connectDB();
 
 // MIDDLEWARE
 app.use(express.json());
+app.use(errorMiddleware);
 
 // ROUTES
 const productRoutes = require('./routes/product.routes');
