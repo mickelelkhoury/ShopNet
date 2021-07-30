@@ -12,12 +12,14 @@ connectDB();
 
 // MIDDLEWARE
 app.use(express.json());
-app.use(errorMiddleware);
 
 // ROUTES
 const productRoutes = require('./routes/product.routes');
 
 app.use('/api/v1', productRoutes);
+
+// ERROR MIDDLEWARE
+app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
 	console.log(
