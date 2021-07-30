@@ -6,7 +6,7 @@ const connectDB = () => {
 			useNewUrlParser: true,
 			useCreateIndex: true,
 			useUnifiedTopology: true,
-			// useFindAndModify: false,
+			useFindAndModify: false,
 		})
 		.then((con) =>
 			console.log(
