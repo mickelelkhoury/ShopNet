@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 
+const dbUrl = process.env.DB_LOCAL_URI || 'mongodb://localhost:27017/ecommerce';
+
 const connectDB = () => {
 	mongoose
-		.connect(process.env.DB_LOCAL_URL, {
+		.connect(dbUrl, {
 			useNewUrlParser: true,
 			useCreateIndex: true,
 			useUnifiedTopology: true,
