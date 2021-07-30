@@ -64,3 +64,24 @@ module.exports.editSingleProduct = async (req, res, next) => {
 		product,
 	});
 };
+
+// DELETE SINGLE PRODUCT => /api/v1/admin/product/:id
+module.exports.deleteSingleProduct = async (req, res, next) => {
+	const { id } = req.params;
+	let product = await Product.findById(id);
+
+	if (!product) {
+		return res.status(404).json({
+			seccess: false,
+			message: 'Product not found',
+		});
+	}
+
+	product = await Product.findByIdAndDelete(id);
+
+	res.status(200).json({
+		success: true,
+		message: 'Product found and deleted',
+		product,
+	});
+};

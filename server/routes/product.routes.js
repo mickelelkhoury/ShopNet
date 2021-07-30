@@ -8,6 +8,9 @@ router.route('/product/:id').get(productController.getSingleProduct);
 
 router.route('/admin//product/new').post(productController.newProduct);
 
-router.route('/admin/product/:id').put(productController.editSingleProduct);
+router
+	.route('/admin/product/:id')
+	.put(productController.editSingleProduct)
+	.delete(productController.deleteSingleProduct);
 
 module.exports = router;
