@@ -6,7 +6,8 @@
 	"scripts": {
 		"start": "node index.js",
 		"dev": "SET NODE_ENV=DEVELOPMENT& nodemon index.js",
-		"prod": "SET NODE_ENV=production& nodemon index.js"
+		"prod": "SET NODE_ENV=production& nodemon index.js",
+		"seed": "node utils/seeder.js"
 	},
 	"keywords": [],
 	"author": "Mickel",
