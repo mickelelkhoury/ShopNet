@@ -22,8 +22,10 @@ app.use(express.json());
 
 // ROUTES
 const productRoutes = require('./routes/product.routes');
+const userRoutes = require('./routes/user.routes');
 
 app.use('/api/v1', productRoutes);
+app.use('/api/v1', userRoutes);
 
 // ERROR MIDDLEWARE
 app.use(errorMiddleware);
