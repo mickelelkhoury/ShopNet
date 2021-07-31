@@ -7,6 +7,13 @@ const app = express();
 const connectDB = require('./config/database');
 const errorMiddleware = require('./middlewares/errors');
 
+// Handle Uncaught exceptions
+process.on('uncaughtException', (err) => {
+	console.log(`ERROR: ${err.message}`);
+	console.log('SHUTTING DOWN SERVER DUE TO UNCAUGHT EXCEPTIONS');
+	process.exit(1);
+});
+
 // DATABASE CONNECTION
 connectDB();
 
@@ -31,9 +38,7 @@ const server = app.listen(PORT, () => {
 
 // Handle Unhandled promise rejections
 process.on('unhandledRejection', (err) => {
-	console.error(`ERROR: ${err.message}`);
-	console.log('STOPING SERVER DUE TO UNHANDLED PROMISE REJECTION');
-	server.close(() => {
-		process.exit(1);
-	});
+	console.log(`ERROR: ${err.message}`);
+	console.log('SHUTTING DOWN SERVER DUE TO UNHANDLED PROMISE REJECTION');
+	server.close(() => process.exit(1));
 });
