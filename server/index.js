@@ -21,9 +21,11 @@ app.use('/api/v1', productRoutes);
 // ERROR MIDDLEWARE
 app.use(errorMiddleware);
 
-const server = app.listen(process.env.PORT, () => {
+const PORT = process.env.PORT || 4000;
+
+const server = app.listen(PORT, () => {
 	console.log(
-		`SERVER LISTENING ON PORT: ${process.env.PORT} in ${process.env.NODE_ENV} mode.`
+		`SERVER LISTENING ON PORT: ${PORT} in ${process.env.NODE_ENV} mode.`
 	);
 });
 
