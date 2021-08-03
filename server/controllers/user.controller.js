@@ -185,3 +185,33 @@ module.exports.logout = catchAsyncErrors(async (req, res, next) => {
 		message: 'Logged Out',
 	});
 });
+
+// ADMIN ROUTES
+
+// GET ALL USERS => /api/v1/admin/users
+module.exports.getAllUsers = catchAsyncErrors(async (req, res, next) => {
+	const users = await User.find();
+
+	const usersCount = await User.countDocuments();
+
+	res.status(200).json({
+		success: true,
+		usersCount,
+		users,
+	});
+});
+
+// GET SINGLE USER DETAILS => /api/v1/admin/user/:id
+module.exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+	const user = await User.findById(req.params.id);
+	if (!user) {
+		return next(
+			new ErrorHandler(`User does not exist with id: ${req.params.id}`, 404)
+		);
+	}
+
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});

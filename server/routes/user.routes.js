@@ -3,7 +3,7 @@ const router = express.Router();
 
 const userController = require('../controllers/user.controller');
 
-const { isAuthenticatedUser } = require('../middlewares/auth');
+const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 
 // AUTH ROUTES
 router.route('/register').post(userController.registerUser);
@@ -22,5 +22,21 @@ router
 router
 	.route('/password/update')
 	.put(isAuthenticatedUser, userController.updatePassword);
+
+// ADMIN ROUTES
+router
+	.route('/admin/users')
+	.get(
+		isAuthenticatedUser,
+		authorizeRoles('admin'),
+		userController.getAllUsers
+	);
+router
+	.route('/admin/user/:id')
+	.get(
+		isAuthenticatedUser,
+		authorizeRoles('admin'),
+		userController.getUserDetails
+	);
 
 module.exports = router;
