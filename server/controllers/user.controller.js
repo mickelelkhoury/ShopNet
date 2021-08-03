@@ -153,6 +153,7 @@ module.exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
 
 	res.status(200).json({
 		success: true,
+		user,
 	});
 });
 
@@ -209,6 +210,51 @@ module.exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 			new ErrorHandler(`User does not exist with id: ${req.params.id}`, 404)
 		);
 	}
+
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});
+
+// UPDATE USER PROFILE FROM ADMIN => /api/v1/admin/user/:id
+module.exports.updateUserProfile = catchAsyncErrors(async (req, res, next) => {
+	const newUserData = {
+		name: req.body.name,
+		email: req.body.email,
+		role: req.body.role,
+	};
+
+	const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+		new: true,
+		runValidators: true,
+	});
+
+	if (!user) {
+		return next(
+			new ErrorHandler(`User does not exist with id: ${req.params.id}`, 404)
+		);
+	}
+
+	res.status(200).json({
+		success: true,
+		user,
+	});
+});
+
+// DELETE SINGLE USER => /api/v1/admin/user/:id
+module.exports.deleteUser = catchAsyncErrors(async (req, res, next) => {
+	const user = await User.findById(req.params.id);
+
+	if (!user) {
+		return next(
+			new ErrorHandler(`User does not exist with id: ${req.params.id}`, 404)
+		);
+	}
+
+	//TODO: Remove avatar from cloudinary
+
+	await user.remove();
 
 	res.status(200).json({
 		success: true,
