@@ -137,6 +137,25 @@ module.exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
 	});
 });
 
+// UPDATE USER PROFILE => /api/v1/me/update
+module.exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+	const newUserData = {
+		name: req.body.name,
+		email: req.body.email,
+	};
+
+	//TODO: Update avatar
+
+	const user = await User.findByIdAndUpdate(req.user.id, newUserData, {
+		new: true,
+		runValidators: true,
+	});
+
+	res.status(200).json({
+		success: true,
+	});
+});
+
 // UPDATE / CHANGE PASSWORD => /api/v1/password/update
 module.exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 	const user = await User.findById(req.user.id).select('+password');

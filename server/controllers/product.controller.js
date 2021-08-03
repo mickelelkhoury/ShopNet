@@ -65,7 +65,6 @@ module.exports.editSingleProduct = catchAsyncErrors(async (req, res, next) => {
 	product = await Product.findByIdAndUpdate(id, req.body, {
 		new: true,
 		runValidators: true,
-		useFindAndModify: false,
 	});
 
 	res.status(200).json({

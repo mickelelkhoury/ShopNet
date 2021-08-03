@@ -17,6 +17,9 @@ router.route('/logout').get(userController.logout);
 // USER ROUTES
 router.route('/me').get(isAuthenticatedUser, userController.getUserProfile);
 router
+	.route('/me/update')
+	.put(isAuthenticatedUser, userController.updateProfile);
+router
 	.route('/password/update')
 	.put(isAuthenticatedUser, userController.updatePassword);
 
