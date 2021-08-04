@@ -20,5 +20,12 @@ router
 		authorizeRoles('admin'),
 		orderController.getAllOrders
 	);
+router
+	.route('/admin/order/:id')
+	.put(
+		isAuthenticatedUser,
+		authorizeRoles('admin'),
+		orderController.updateOrder
+	);
 
 module.exports = router;
