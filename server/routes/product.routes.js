@@ -29,4 +29,14 @@ router
 		productController.deleteSingleProduct
 	);
 
+// REVIEWS //
+router
+	.route('/review')
+	.put(isAuthenticatedUser, productController.createProductReview);
+
+router
+	.route('/reviews')
+	.get(isAuthenticatedUser, productController.getProductReviews)
+	.delete(isAuthenticatedUser, productController.deleteProductReview);
+
 module.exports = router;
