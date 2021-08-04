@@ -26,6 +26,11 @@ router
 		isAuthenticatedUser,
 		authorizeRoles('admin'),
 		orderController.updateOrder
+	)
+	.delete(
+		isAuthenticatedUser,
+		authorizeRoles('admin'),
+		orderController.deleteOrder
 	);
 
 module.exports = router;
