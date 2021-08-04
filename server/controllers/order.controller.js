@@ -51,3 +51,15 @@ module.exports.getSingleOrder = catchAsyncErrors(async (req, res, next) => {
 		order,
 	});
 });
+
+// GET LOGGED IN USER ORDERS => /api/v1/order/me
+module.exports.getLoggedUserOrders = catchAsyncErrors(
+	async (req, res, next) => {
+		const orders = await Order.find({ user: req.user.id });
+
+		res.status(200).json({
+			success: true,
+			orders,
+		});
+	}
+);
