@@ -80,7 +80,7 @@ const orderSchema = new Schema({
 		required: true,
 		default: 0.0,
 	},
-	totlePrice: {
+	totalPrice: {
 		type: Number,
 		required: true,
 		default: 0.0,
