@@ -18,7 +18,6 @@ module.exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 
 // GET ALL PRODUCTS => /api/v1/product
 module.exports.getProducts = catchAsyncErrors(async (req, res, next) => {
-	console.log(req);
 	const resPerPage = 4;
 	const productCount = await Product.countDocuments();
 

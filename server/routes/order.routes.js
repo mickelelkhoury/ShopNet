@@ -10,7 +10,7 @@ router
 	.route('/order/:id')
 	.get(isAuthenticatedUser, orderController.getSingleOrder);
 router
-	.route('/order/me')
+	.route('/orders/me')
 	.get(isAuthenticatedUser, orderController.getLoggedUserOrders);
 
 module.exports = router;
