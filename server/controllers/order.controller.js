@@ -63,3 +63,20 @@ module.exports.getLoggedUserOrders = catchAsyncErrors(
 		});
 	}
 );
+
+// GET ALL ORDERS => /api/v1/admin/orders
+module.exports.getAllOrders = catchAsyncErrors(async (req, res, next) => {
+	const orders = await Order.find();
+
+	const ordersCount = await Order.countDocuments();
+
+	let totalAmount = 0;
+	orders.forEach((order) => (totalAmount += order.totalPrice));
+
+	res.status(200).json({
+		success: true,
+		totalAmount,
+		ordersCount,
+		orders,
+	});
+});

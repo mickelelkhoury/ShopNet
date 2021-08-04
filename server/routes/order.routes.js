@@ -13,4 +13,12 @@ router
 	.route('/orders/me')
 	.get(isAuthenticatedUser, orderController.getLoggedUserOrders);
 
+router
+	.route('/admin/orders')
+	.get(
+		isAuthenticatedUser,
+		authorizeRoles('admin'),
+		orderController.getAllOrders
+	);
+
 module.exports = router;
