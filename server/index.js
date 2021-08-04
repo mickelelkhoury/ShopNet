@@ -26,9 +26,11 @@ app.use(cookieParser());
 // ROUTES
 const productRoutes = require('./routes/product.routes');
 const userRoutes = require('./routes/user.routes');
+const orderRoutes = require('./routes/order.routes');
 
 app.use('/api/v1', productRoutes);
 app.use('/api/v1', userRoutes);
+app.use('/api/v1', orderRoutes);
 
 // ERROR MIDDLEWARE
 app.use(errorMiddleware);
