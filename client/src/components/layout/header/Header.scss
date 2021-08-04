@@ -1,0 +1,10 @@
+@import '../../../assets/styles/style.scss';
+
+.cart-badge {
+	@include center-flex;
+	background: #00d1b2;
+	width: 20px;
+	height: 20px;
+	border-radius: 5px;
+	margin: 3px;
+}
