@@ -1,0 +1,39 @@
+@media (max-width: 1024px) {
+	.card {
+		font-size: 0.7rem;
+		.card-content {
+			padding: 1rem !important;
+		}
+		h3 {
+			font-size: 1rem !important;
+		}
+	}
+}
+@media (max-width: 768px) {
+	.card {
+		font-size: 0.8rem;
+
+		h3 {
+			font-size: 1.2rem !important;
+		}
+	}
+}
+@media (max-width: 598px) {
+	.card {
+		font-size: 0.6rem;
+		h3 {
+			font-size: 0.9rem !important;
+		}
+	}
+}
+@media (max-width: 460px) {
+	.card {
+		font-size: 0.6rem;
+		.card-content {
+			padding: 0.7rem !important;
+		}
+		h3 {
+			font-size: 0.9rem !important;
+		}
+	}
+}
