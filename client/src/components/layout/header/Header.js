@@ -3,8 +3,8 @@ import { Fragment } from 'react';
 import './Header.scss';
 
 const Header = (props) => {
-	let burgerBtn = document.querySelector('#mobilemenu-burger');
-	let burgerMenu = document.querySelector('#mobilemenu-menu');
+	const burgerBtn = document.querySelector('#mobilemenu-burger');
+	const burgerMenu = document.querySelector('#mobilemenu-menu');
 	const toggleMobileMenu = () => {
 		if (
 			!burgerBtn.classList.contains('is-active') &&
@@ -26,30 +26,13 @@ const Header = (props) => {
 				aria-label='main navigation'
 			>
 				<div className='navbar-brand'>
-					<a className='navbar-item' href>
-						<img
-							src='https://bulma.io/images/bulma-logo.png'
-							width='112'
-							height='28'
-							alt='logo'
-						/>
+					<a id='nav__logo' className='navbar-item h-100' href>
+						<img src='https://bulma.io/images/bulma-logo.png' alt='logo' />
 					</a>
 
-					<div
-						className='navbar-burger'
-						id='mobilemenu-burger'
-						onClick={() => toggleMobileMenu()}
-					>
-						<span aria-hidden='true'></span>
-						<span aria-hidden='true'></span>
-						<span aria-hidden='true'></span>
-					</div>
-				</div>
-
-				<div className='navbar-menu' id='mobilemenu-menu'>
 					<div className='navbar-start'>
-						<div className='navbar-item'>
-							<div class='field has-addons'>
+						<div className='navbar-item h-100'>
+							<div class='field has-addons' id='nav__search'>
 								<div class='control'>
 									<input
 										class='input is-primary'
@@ -65,6 +48,19 @@ const Header = (props) => {
 							</div>
 						</div>
 					</div>
+
+					<div
+						className='navbar-burger'
+						id='mobilemenu-burger'
+						onClick={() => toggleMobileMenu()}
+					>
+						<span aria-hidden='true'></span>
+						<span aria-hidden='true'></span>
+						<span aria-hidden='true'></span>
+					</div>
+				</div>
+
+				<div className='navbar-menu' id='mobilemenu-menu'>
 					<div className='navbar-end'>
 						<div className='navbar-item'>
 							<div className='buttons'>
