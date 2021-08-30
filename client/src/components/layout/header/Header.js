@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import './Header.scss';
 
+// IMAGES
+import logo from '../../../assets/images/cart.svg';
+
 const Header = () => {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -13,7 +16,8 @@ const Header = () => {
 			>
 				<div className='navbar-brand'>
 					<a id='nav__logo' className='navbar-item h-100' href='/'>
-						<img src='https://bulma.io/images/bulma-logo.png' alt='logo' />
+						<img src={logo} alt='ShopNet' />
+						Shop<span>Net</span>
 					</a>
 
 					<div className='navbar-start'>
