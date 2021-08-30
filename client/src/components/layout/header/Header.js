@@ -1,21 +1,8 @@
-import { useEffect, useRef } from 'react';
-
+import { useState } from 'react';
 import './Header.scss';
 
-const Header = (props) => {
-	const menuBtnRef = useRef();
-	const menuMobileRef = useRef();
-	let burgerBtn = '';
-	let burgerMenu = '';
-	useEffect(() => {
-		burgerBtn = document.querySelector('#mobilemenu-burger');
-		burgerMenu = document.querySelector('#mobilemenu-menu');
-	}, []);
-
-	const toggleMobileMenu = () => {
-		burgerBtn.classList.toggle('is-active');
-		burgerMenu.classList.toggle('is-active');
-	};
+const Header = () => {
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
 		<>
@@ -49,10 +36,8 @@ const Header = (props) => {
 					</div>
 
 					<div
-						className='navbar-burger'
-						id='mobilemenu-burger'
-						ref={menuBtnRef}
-						onClick={() => toggleMobileMenu()}
+						className={`navbar-burger ${isOpen ? 'is-active' : ''}`}
+						onClick={() => setIsOpen(!isOpen)}
 					>
 						<span aria-hidden='true'></span>
 						<span aria-hidden='true'></span>
@@ -60,7 +45,7 @@ const Header = (props) => {
 					</div>
 				</div>
 
-				<div className='navbar-menu' id='mobilemenu-menu' ref={menuMobileRef}>
+				<div className={`navbar-menu  ${isOpen ? 'is-active' : ''}`}>
 					<div className='navbar-end'>
 						<div className='navbar-item'>
 							<div className='buttons'>
