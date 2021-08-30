@@ -1,3 +1,22 @@
+@import '../../assets/styles/style.scss';
+
+.item-main-card {
+	.cardLink {
+		color: $cyan1 !important;
+	}
+	.media-left {
+		display: flex;
+	}
+}
+
+@media (max-width: 1216px) {
+	.item-main-card {
+		.media-left {
+			display: flex !important;
+			flex-direction: column !important;
+		}
+	}
+}
 @media (max-width: 1024px) {
 	.card {
 		font-size: 0.7rem;

@@ -37,8 +37,8 @@ const Home = ({
 									<ItemCard
 										title={zone.name}
 										images={zone.images}
-										// numOfReviews={zone.numOfReviews}
-										numOfReviews={2312312}
+										numOfReviews={zone.numOfReviews}
+										ratings={zone.ratings}
 										price={zone.price}
 									/>
 								</div>
