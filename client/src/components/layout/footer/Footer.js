@@ -6,7 +6,7 @@ const Footer = () => {
 	return (
 		<Fragment>
 			<footer className='footer'>
-				<span className='footer__copyright'>&copy; 2021 Ecommerce</span>
+				<span className='footer__copyright'>&copy; 2021 ShopNet</span>
 			</footer>
 		</Fragment>
 	);

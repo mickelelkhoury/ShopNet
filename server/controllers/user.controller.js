@@ -75,7 +75,7 @@ module.exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 	try {
 		await sendEmail({
 			email: user.email,
-			subject: 'Ecommerce Password Recovery',
+			subject: 'ShopNet Password Recovery',
 			message,
 		});
 

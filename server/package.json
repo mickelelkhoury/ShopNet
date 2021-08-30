@@ -1,7 +1,7 @@
 {
 	"name": "server",
 	"version": "1.0.0",
-	"description": "Ecommerce backend",
+	"description": "ShopNet backend",
 	"main": "index.js",
 	"scripts": {
 		"start": "node index.js",
