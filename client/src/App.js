@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Route,
+	Redirect,
+	Switch,
+} from 'react-router-dom';
 
 // STYLES
 import 'bulma/css/bulma.min.css';
@@ -17,7 +22,10 @@ function App() {
 			<div className='App'>
 				<Header />
 				<div className='container'>
-					<Route exact path='/' component={Home} />
+					<Switch>
+						<Route exact path='/' render={() => <Redirect to='/home' />} />
+						<Route exact path='/home' component={Home} />
+					</Switch>
 				</div>
 				<Footer />
 			</div>
