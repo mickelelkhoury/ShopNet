@@ -5,6 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const app = express();
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 const connectDB = require('./config/database');
 const errorMiddleware = require('./middlewares/errors');
@@ -22,6 +23,7 @@ connectDB();
 // MIDDLEWARE
 app.use(express.json());
 app.use(cookieParser());
+app.use(cors());
 
 // ROUTES
 const productRoutes = require('./routes/product.routes');
