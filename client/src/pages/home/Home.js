@@ -5,7 +5,7 @@ import ItemCard from '../../components/itemCard/ItemCard';
 
 const Home = () => {
 	return (
-		<div className='container'>
+		<>
 			<MainTextHeader title='latest products' />
 
 			<section className='container py-6 px-6-mobile px-3'>
@@ -24,7 +24,7 @@ const Home = () => {
 					</div>
 				</div>
 			</section>
-		</div>
+		</>
 	);
 };
 

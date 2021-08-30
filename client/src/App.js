@@ -13,11 +13,15 @@ import Home from './pages/home/Home';
 
 function App() {
 	return (
-		<div className='App'>
-			<Header />
-			<Home />
-			<Footer />
-		</div>
+		<Router>
+			<div className='App'>
+				<Header />
+				<div className='container'>
+					<Route exact path='/' component={Home} />
+				</div>
+				<Footer />
+			</div>
+		</Router>
 	);
 }
 
