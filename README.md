@@ -1,6 +1,6 @@
 # ShopNet
 
-> Complete E-commerce site
+> Complete Ecommerce site
 
 ### Tech Used:
 
