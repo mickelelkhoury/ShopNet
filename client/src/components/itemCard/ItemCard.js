@@ -1,8 +1,26 @@
 import { useState, useEffect } from 'react';
+import PrettyRating from 'pretty-rating-react';
+import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+
+// SCSS
 import './ItemCard.scss';
+
+const icons = {
+	star: {
+		complete: faStar,
+		half: faStarHalfAlt,
+		empty: farStar,
+	},
+};
+
+const colors = {
+	star: ['#4a4a4a', '#4a4a4a', '#4a4a4a'],
+};
 
 const ItemCard = ({ title, images, price, numOfReviews, ratings }) => {
 	const [reviewCount, setReviewCount] = useState('');
+	const [newRating, setNewRating] = useState('');
 
 	useEffect(() => {
 		if (numOfReviews <= 0) {
@@ -15,6 +33,10 @@ const ItemCard = ({ title, images, price, numOfReviews, ratings }) => {
 			setReviewCount(`+99 Reviews`);
 		}
 	}, [numOfReviews]);
+
+	useEffect(() => {
+		setNewRating(ratings / 2);
+	}, [ratings]);
 
 	return (
 		<div className='card item-main-card'>
@@ -39,11 +61,12 @@ const ItemCard = ({ title, images, price, numOfReviews, ratings }) => {
 				<div className='media'>
 					<div className='media-left'>
 						<div className='ratings mt-auto'>
-							<i className='fa fa-star-o'></i>
-							<i className='fa fa-star-o'></i>
-							<i className='fa fa-star-o'></i>
-							<i className='fa fa-star-o'></i>
-							<i className='fa fa-star-o'></i>
+							<PrettyRating
+								value={newRating}
+								icons={icons.star}
+								colors={colors.star}
+								max={5}
+							/>
 						</div>
 						<span id='no_of_reviews'>&#40;{reviewCount}&#41;</span>
 					</div>

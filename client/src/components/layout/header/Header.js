@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
+// COMPONENTS
 import './Header.scss';
 
 // IMAGES
@@ -32,7 +36,7 @@ const Header = () => {
 								</div>
 								<div className='control'>
 									<button className='button is-primary'>
-										<i className='fa fa-search' aria-hidden='true'></i>
+										<FontAwesomeIcon icon={faSearch} />
 									</button>
 								</div>
 							</div>
@@ -55,7 +59,7 @@ const Header = () => {
 							<div className='buttons'>
 								<button className='button is-primary'>Log in</button>
 								<button className='button is-light'>
-									<i className='fas fa-shopping-cart'></i>
+									<FontAwesomeIcon icon={faShoppingCart} />
 									<span className='cart-badge'>2</span>
 								</button>
 							</div>
