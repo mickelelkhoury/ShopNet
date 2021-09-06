@@ -4,7 +4,7 @@ const baseURL = 'http://localhost:4000/api/v1';
 
 const errorCatch = (error) => {
 	console.log('ERROR API: ', error);
-	return error;
+	return error.response;
 };
 
 async function getAllProducts() {

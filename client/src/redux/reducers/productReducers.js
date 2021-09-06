@@ -8,7 +8,7 @@ import {
 const initialState = {
 	allProductsData: [],
 	allProductsLoading: false,
-	allProductsMessage: '',
+	allProductsMessage: ['', ''],
 };
 
 function product(state = initialState, action) {
@@ -17,25 +17,25 @@ function product(state = initialState, action) {
 			return Object.assign({}, state, {
 				allProductsData: [],
 				allProductsLoading: true,
-				allProductsMessage: '',
+				allProductsMessage: ['', ''],
 			});
 		case ALL_PRODUCTS_SUCCESS:
 			return Object.assign({}, state, {
 				allProductsData: action.payload.data,
 				allProductsLoading: false,
-				allProductsMessage: '',
+				allProductsMessage: ['', action.payload.message],
 			});
 		case ALL_PRODUCTS_ERROR:
 			return Object.assign({}, state, {
 				allProductsData: [],
 				allProductsLoading: false,
-				allProductsMessage: action.payload.message,
+				allProductsMessage: [action.payload.message, ''],
 			});
 
 		case CLEAR_MESSAGES:
 			return {
 				...initialState,
-				allProductsMessage: '',
+				allProductsMessage: ['', ''],
 			};
 		default:
 			return state;

@@ -15,7 +15,9 @@ const Home = ({
 	allProductsLoading,
 	allProductsMessage,
 }) => {
-	useEffect(() => getAllProducts(), []);
+	useEffect(() => {
+		getAllProducts();
+	}, []);
 
 	return (
 		<>
