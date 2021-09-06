@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import PrettyRating from 'pretty-rating-react';
+import { useHistory } from 'react-router-dom';
 import { faStar, faStarHalfAlt } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
 // SCSS
 import './ItemCard.scss';
+
+// COMPONENTS
+import MainButton from '../button/MainButton';
 
 const icons = {
 	star: {
@@ -15,10 +19,12 @@ const icons = {
 };
 
 const colors = {
-	star: ['#4a4a4a', '#4a4a4a', '#4a4a4a'],
+	star: ['#00d1b2', '#00d1b2', '#4a4a4a'],
 };
 
-const ItemCard = ({ title, images, price, numOfReviews, ratings }) => {
+const ItemCard = ({ id, title, images, price, numOfReviews, ratings }) => {
+	const history = useHistory();
+
 	const [reviewCount, setReviewCount] = useState('');
 	const [newRating, setNewRating] = useState('');
 
@@ -54,9 +60,7 @@ const ItemCard = ({ title, images, price, numOfReviews, ratings }) => {
 			</div>
 			<div className='card-content'>
 				<div className='content'>
-					<a href='/' className='cardLink'>
-						{title}
-					</a>
+					<span className='cardLink'>{title}</span>
 				</div>
 				<div className='media'>
 					<div className='media-left'>
@@ -74,6 +78,11 @@ const ItemCard = ({ title, images, price, numOfReviews, ratings }) => {
 				<div className='content'>
 					<h3>${price}</h3>
 				</div>
+				<MainButton
+					text='View Details'
+					color='is-primary'
+					handleClick={() => history.push(`/product/${id}`)}
+				/>
 			</div>
 		</div>
 	);
