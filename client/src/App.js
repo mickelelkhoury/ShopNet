@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react';
 import {
 	BrowserRouter as Router,
 	Route,
@@ -12,24 +13,27 @@ import './assets/styles/style.scss';
 // COMPONENTS
 import Header from './components/layout/header/Header';
 import Footer from './components/layout/footer/Footer';
+import Loading from './components/loading/Loading';
 
 // PAGES
-import Home from './pages/home/Home';
+const Home = lazy(() => import('./pages/home/Home'));
 
 function App() {
 	return (
-		<Router>
-			<div className='App'>
-				<Header />
-				<div className='container'>
-					<Switch>
-						<Route exact path='/' render={() => <Redirect to='/home' />} />
-						<Route exact path='/home' component={Home} />
-					</Switch>
+		<Suspense fallback={<Loading />}>
+			<Router>
+				<div className='App'>
+					<Header />
+					<div className='container'>
+						<Switch>
+							<Route exact path='/' render={() => <Redirect to='/home' />} />
+							<Route exact path='/home' component={Home} />
+						</Switch>
+					</div>
+					<Footer />
 				</div>
-				<Footer />
-			</div>
-		</Router>
+			</Router>
+		</Suspense>
 	);
 }
 
