@@ -15,11 +15,7 @@ const Home = ({
 	allProductsLoading,
 	allProductsMessage,
 }) => {
-	useEffect(() => {
-		getAllProducts();
-	}, []);
-
-	console.log(allProductsData);
+	useEffect(() => getAllProducts(), []);
 
 	return (
 		<>
@@ -35,6 +31,7 @@ const Home = ({
 									className='column is-half-mobile is-one-quarter-tablet'
 								>
 									<ItemCard
+										id={zone._id}
 										title={zone.name}
 										images={zone.images}
 										numOfReviews={zone.numOfReviews}
@@ -44,15 +41,6 @@ const Home = ({
 								</div>
 							);
 						})}
-					{/* <div className='column is-half-mobile is-one-quarter-tablet'>
-						<ItemCard />
-					</div>
-					<div className='column is-half-mobile is-one-quarter-tablet'>
-						<ItemCard />
-					</div>
-					<div className='column is-half-mobile is-one-quarter-tablet'>
-						<ItemCard />
-					</div> */}
 				</div>
 			</section>
 		</>

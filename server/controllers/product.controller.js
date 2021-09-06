@@ -19,7 +19,7 @@ module.exports.newProduct = catchAsyncErrors(async (req, res, next) => {
 // GET ALL PRODUCTS => /api/v1/product
 module.exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 	const resPerPage = 4;
-	const productCount = await Product.countDocuments();
+	const productsCount = await Product.countDocuments();
 
 	const apiFeatures = new APIFeatures(Product.find(), req.query)
 		.search()
@@ -32,7 +32,7 @@ module.exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 		success: true,
 		message: 'All product from DB',
 		// count: products.length,
-		productCount,
+		productsCount,
 		products,
 	});
 });
