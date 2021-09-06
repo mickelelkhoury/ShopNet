@@ -7,6 +7,7 @@ const errorCatch = (error) => {
 	return error.response;
 };
 
+// GET ALL PRODUCTS
 async function getAllProducts() {
 	const url = `${baseURL}/product?page=1`;
 	return await axios
@@ -17,4 +18,15 @@ async function getAllProducts() {
 		});
 }
 
-export { getAllProducts };
+// GET PRODUCT DETAILS
+async function getProductDetails(data) {
+	const url = `${baseURL}/product/${data.id}`;
+	return await axios
+		.get(url)
+		.then((res) => res)
+		.catch((err) => {
+			return errorCatch(err);
+		});
+}
+
+export { getAllProducts, getProductDetails };
