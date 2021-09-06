@@ -10,8 +10,8 @@ $small-spinner-dimensions: $main-spinner-dimensions * 0.7;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-
-	margin-top: 100px;
+	margin: auto;
+	height: calc(100vh - 224px);
 
 	h1 {
 		color: $cyan1;
