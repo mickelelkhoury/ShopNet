@@ -13,6 +13,7 @@ import { ToastContainer, Slide } from 'react-toastify';
 import 'bulma/css/bulma.min.css';
 import './assets/styles/style.scss';
 import 'react-toastify/dist/ReactToastify.css';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 
 ReactDOM.render(
 	<Provider store={store}>
