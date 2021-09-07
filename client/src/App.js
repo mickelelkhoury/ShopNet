@@ -11,16 +11,21 @@ import Footer from './components/layout/footer/Footer';
 
 // PAGES
 import Home from './pages/home/Home';
+import ProductDetails from './pages/product/ProductDetails';
 
 function App() {
 	return (
 		<Router>
 			<div className='App'>
 				<Header />
-				<div className='container'>
+				<div
+					className='container'
+					style={{ marginTop: '30px', marginBottom: '30px' }}
+				>
 					<Switch>
 						<Route exact path='/' render={() => <Redirect to='/home' />} />
 						<Route exact path='/home' component={Home} />
+						<Route exact path='/product/:id' component={ProductDetails} />
 					</Switch>
 				</div>
 				<Footer />

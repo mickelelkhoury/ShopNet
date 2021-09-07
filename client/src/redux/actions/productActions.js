@@ -72,12 +72,11 @@ const actions = {
 				type: PRODUCT_DETAILS_REQUEST,
 			});
 			await getProductDetails(data).then((response) => {
-				console.log(response.data);
 				if (response.status === 200) {
 					dispatch({
 						type: PRODUCT_DETAILS_SUCCESS,
 						payload: {
-							data: response.data,
+							data: response.data.product,
 							message: response.data.message,
 						},
 					});
