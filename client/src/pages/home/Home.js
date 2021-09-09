@@ -1,4 +1,10 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import Pagination from 'react-js-pagination';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+	faChevronLeft,
+	faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 // REDUX
 import { connect } from 'react-redux';
@@ -11,9 +17,15 @@ import MetaData from '../../components/layout/MetaData';
 import Loading from '../../components/loading/Loading';
 
 const Home = ({ getAllProducts, allProductsData, allProductsLoading }) => {
+	const [currentPage, setCurrentPage] = useState(1);
+
 	useEffect(() => {
-		getAllProducts();
-	}, []);
+		getAllProducts(currentPage);
+	}, [currentPage]);
+
+	const handleChangePage = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
 
 	return (
 		<>
@@ -45,6 +57,23 @@ const Home = ({ getAllProducts, allProductsData, allProductsLoading }) => {
 								})}
 						</div>
 					</section>
+
+					{allProductsData?.resPerPage <= allProductsData?.productsCount && (
+						<div className='is-flex is-justify-content-center'>
+							<Pagination
+								itemClass='pag-item'
+								linkClass='pag-link'
+								activePage={currentPage}
+								activeClass='pag-active-item'
+								itemsCountPerPage={allProductsData?.resPerPage}
+								totalItemsCount={allProductsData?.productsCount || 0}
+								onChange={handleChangePage}
+								hideFirstLastPages={true}
+								prevPageText={<FontAwesomeIcon icon={faChevronLeft} />}
+								nextPageText={<FontAwesomeIcon icon={faChevronRight} />}
+							/>
+						</div>
+					)}
 				</>
 			)}
 		</>
@@ -58,7 +87,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	getAllProducts: () => dispatch(productActions.getAllProducts()),
+	getAllProducts: (currentPage) =>
+		dispatch(productActions.getAllProducts(currentPage)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

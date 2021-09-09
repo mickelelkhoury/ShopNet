@@ -14,12 +14,12 @@ export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 
 const actions = {
 	// GET ALL PRODUCTS
-	getAllProducts: () => async (dispatch) => {
+	getAllProducts: (currentPage) => async (dispatch) => {
 		try {
 			dispatch({
 				type: ALL_PRODUCTS_REQUEST,
 			});
-			await getAllProducts().then((response) => {
+			await getAllProducts(currentPage).then((response) => {
 				if (response.status === 200) {
 					dispatch({
 						type: ALL_PRODUCTS_SUCCESS,

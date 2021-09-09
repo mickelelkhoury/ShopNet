@@ -8,8 +8,8 @@ const errorCatch = (error) => {
 };
 
 // GET ALL PRODUCTS
-async function getAllProducts() {
-	const url = `${baseURL}/product?page=1`;
+async function getAllProducts(currentPage) {
+	const url = `${baseURL}/product?page=${currentPage}`;
 	return await axios
 		.get(url)
 		.then((res) => res)
