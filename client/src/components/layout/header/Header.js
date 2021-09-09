@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { Route } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
+// SCSS
+import './Header.scss';
 
 // COMPONENTS
-import './Header.scss';
+import Search from '../Search';
 
 // IMAGES
 import logo from '../../../assets/images/cart.svg';
@@ -25,22 +29,7 @@ const Header = () => {
 					</a>
 
 					<div className='navbar-start'>
-						<div className='navbar-item h-100'>
-							<div className='field has-addons' id='nav__search'>
-								<div className='control'>
-									<input
-										className='input is-primary'
-										type='text'
-										placeholder='Enter a product name...'
-									/>
-								</div>
-								<div className='control'>
-									<button className='button is-primary'>
-										<FontAwesomeIcon icon={faSearch} />
-									</button>
-								</div>
-							</div>
-						</div>
+						<Route render={({ history }) => <Search history={history} />} />
 					</div>
 
 					<div

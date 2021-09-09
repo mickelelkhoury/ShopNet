@@ -25,6 +25,7 @@ function App() {
 					<Switch>
 						<Route exact path='/' render={() => <Redirect to='/home' />} />
 						<Route exact path='/home' component={Home} />
+						<Route path='/search/:keyword' component={Home} />
 						<Route exact path='/product/:id' component={ProductDetails} />
 					</Switch>
 				</div>

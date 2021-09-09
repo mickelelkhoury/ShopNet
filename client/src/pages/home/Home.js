@@ -16,12 +16,19 @@ import ItemCard from '../../components/itemCard/ItemCard';
 import MetaData from '../../components/layout/MetaData';
 import Loading from '../../components/loading/Loading';
 
-const Home = ({ getAllProducts, allProductsData, allProductsLoading }) => {
+const Home = ({
+	getAllProducts,
+	allProductsData,
+	allProductsLoading,
+	match,
+}) => {
 	const [currentPage, setCurrentPage] = useState(1);
 
+	const keyword = match.params.keyword;
+
 	useEffect(() => {
-		getAllProducts(currentPage);
-	}, [currentPage]);
+		getAllProducts(currentPage, keyword);
+	}, [currentPage, keyword]);
 
 	const handleChangePage = (pageNumber) => {
 		setCurrentPage(pageNumber);
@@ -87,8 +94,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-	getAllProducts: (currentPage) =>
-		dispatch(productActions.getAllProducts(currentPage)),
+	getAllProducts: (currentPage, keyword) =>
+		dispatch(productActions.getAllProducts(currentPage, keyword)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
