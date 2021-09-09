@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import StarPicker from 'react-star-picker';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
 
+import TextField from '../Form/TextField';
+
 const reviewSchema = Yup.object().shape({
-	rating: Yup.number().required(''),
+	rating: Yup.number().required('Rating cannot be empty'),
 	comment: Yup.string(),
 });
 
@@ -33,12 +35,6 @@ const customRenderer = ({ index, selectedIndex, hoverIndex }) => {
 
 const ReviewModal = ({ isOpen, setIsOpen }) => {
 	const [reviewRating, setReviewRating] = useState(null);
-	const [values, setValues] = useState({
-		rating: reviewRating,
-		comment: '',
-		// user: '',
-		// name: '',
-	});
 
 	const handleStarReview = (e) => {
 		setReviewRating(e);
@@ -46,7 +42,13 @@ const ReviewModal = ({ isOpen, setIsOpen }) => {
 	};
 
 	const handleSubmit = (values) => {
-		console.log(values);
+		const { rating, comment } = values;
+		let finalData = {
+			rating,
+			comment,
+			user: '',
+			name: '',
+		};
 	};
 
 	return (
@@ -62,7 +64,10 @@ const ReviewModal = ({ isOpen, setIsOpen }) => {
 					></button>
 				</header>
 				<Formik
-					initialValues={values}
+					initialValues={{
+						rating: reviewRating,
+						comment: '',
+					}}
 					onSubmit={handleSubmit}
 					validationSchema={reviewSchema}
 					enableReinitialize={true}
@@ -82,6 +87,14 @@ const ReviewModal = ({ isOpen, setIsOpen }) => {
 									size={70}
 									starRenderer={customRenderer}
 								/>
+								<ErrorMessage className='has-text-danger error' name='rating'>
+									{() => (
+										<div className='has-text-danger'>
+											Rating cannot be empty
+										</div>
+									)}
+								</ErrorMessage>
+								<TextField name='comment' type='textarea' label='comment' />
 							</section>
 							<footer className='modal-card-foot'>
 								<button className='button is-primary' type='submit'>

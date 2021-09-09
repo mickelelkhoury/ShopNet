@@ -96,7 +96,7 @@ const ProductDetails = ({
 				<Loading />
 			) : (
 				<>
-					<MetaData title='Buy Best Product Online' />
+					<MetaData title={productDetailsData?.name} />
 					<div className='columns is-8 is-variable'>
 						<div className='column'>
 							<Carousel showStatus={false} className='main-carousel'>
