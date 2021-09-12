@@ -1,22 +1,23 @@
 import React from 'react';
 import { ErrorMessage, useField } from 'formik';
 
-const TextField = ({ label, type, ...props }) => {
+const TextField = ({ label, type, icon, fieldStyle, ...props }) => {
 	const [field, meta] = useField(props);
 
 	const text = (
-		<div className='field'>
-			<label className='label' htmlFor={field.name}>
+		<div className='field' style={fieldStyle}>
+			<label className='label has-text-grey-dark' htmlFor={field.name}>
 				{label}
 			</label>
-			<div className='control'>
+			<div className={`control ${icon ? 'has-icons-left' : ''}`}>
 				<input
 					{...field}
 					{...props}
 					className={`input is-primary ${
 						meta.touched && meta.error && 'is-danger'
 					}`}
-				></input>
+				/>
+				{icon && <span className='icon is-small is-left'>{icon}</span>}
 			</div>
 			<ErrorMessage
 				className='has-text-danger error'
@@ -54,6 +55,7 @@ const TextField = ({ label, type, ...props }) => {
 			//     return password
 			case 'email':
 			case 'text':
+			case 'number':
 				return text;
 			case 'textarea':
 				return textarea;
