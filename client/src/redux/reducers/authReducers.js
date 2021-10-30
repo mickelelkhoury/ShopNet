@@ -14,6 +14,7 @@ import {
 	LOGOUT_REQUEST,
 	LOGOUT_SUCCESS,
 	LOGOUT_ERROR,
+	CLEAR_MESSAGES,
 } from '../actions/authActions';
 
 const initialState = {
@@ -134,6 +135,16 @@ function auth(state = initialState, action) {
 				logoutLoading: false,
 				logoutMessage: [action.payload.message, ''],
 			});
+
+		case CLEAR_MESSAGES:
+			return {
+				...initialState,
+				registerMessage: ['', ''],
+				loginMessage: ['', ''],
+				forgotPasswordMessage: ['', ''],
+				resetPasswordMessage: ['', ''],
+				logoutMessage: ['', ''],
+			};
 
 		default:
 			return state;

@@ -28,6 +28,8 @@ export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
 export const LOGOUT_ERROR = 'LOGOUT_ERROR';
 
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
+
 const actions = {
 	// REGISTER
 	register: (data) => async (dispatch) => {
@@ -287,6 +289,13 @@ const actions = {
 				},
 			});
 		}
+	},
+
+	// CLEAR MESSAGES
+	clearMessages: () => async (dispatch) => {
+		dispatch({
+			type: CLEAR_MESSAGES,
+		});
 	},
 };
 
