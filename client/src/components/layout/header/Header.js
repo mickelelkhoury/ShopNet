@@ -51,7 +51,10 @@ const Header = () => {
 							<div className='buttons'>
 								<button
 									className='button is-primary'
-									onClick={() => history.push('/login')}
+									onClick={(e) => {
+										e.preventDefault();
+										history.push('/login');
+									}}
 								>
 									Log in
 								</button>
