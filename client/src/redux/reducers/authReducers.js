@@ -18,6 +18,9 @@ import {
 } from '../actions/authActions';
 
 const initialState = {
+	accessToken: '',
+	isAuthenticated: false,
+
 	registerData: [],
 	registerLoading: false,
 	registerMessage: ['', ''],
@@ -65,18 +68,24 @@ function auth(state = initialState, action) {
 				loginData: [],
 				loginLoading: true,
 				loginMessage: ['', ''],
+				accessToken: '',
+				// isAuthenticated: false,
 			});
 		case LOGIN_SUCCESS:
 			return Object.assign({}, state, {
 				loginData: action.payload.data,
 				loginLoading: false,
 				loginMessage: ['', action.payload.message],
+				isAuthenticated: true,
+				accessToken: action.payload.accessToken,
 			});
 		case LOGIN_ERROR:
 			return Object.assign({}, state, {
 				loginData: [],
 				loginLoading: false,
 				loginMessage: [action.payload.message, ''],
+				isAuthenticated: false,
+				accessToken: '',
 			});
 
 		case FORGOT_PASSWORD_REQUEST:

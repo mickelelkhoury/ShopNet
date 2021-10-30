@@ -84,7 +84,7 @@ const actions = {
 	},
 
 	// LOGIN
-	login: (data) => async (dispatch) => {
+	login: (data, history) => async (dispatch) => {
 		try {
 			dispatch({
 				type: LOGIN_REQUEST,
@@ -95,9 +95,12 @@ const actions = {
 						type: LOGIN_SUCCESS,
 						payload: {
 							data: response.data,
+							accessToken: response.data.token,
 							message: response.data.message,
 						},
 					});
+					localStorage.setItem('access_token', response.data.token);
+					history.push('/');
 				} else {
 					toast.error(response.data.message, {
 						position: 'top-right',
@@ -254,6 +257,7 @@ const actions = {
 							message: response.data.message,
 						},
 					});
+					localStorage.removeItem('access_token');
 				} else {
 					toast.error(response.data.message, {
 						position: 'top-right',
