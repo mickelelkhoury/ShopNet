@@ -2,4 +2,5 @@
 
 .footer {
 	@include center-flex;
+	justify-self: flex-end;
 }
