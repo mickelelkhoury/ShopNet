@@ -17,7 +17,7 @@ const Search = ({ history }) => {
 	};
 
 	return (
-		<form onSubmit={handleSearch}>
+		<form onSubmit={handleSearch} className='h-100'>
 			<div className='navbar-item h-100'>
 				<div className='field has-addons' id='nav__search'>
 					<div className='control'>
