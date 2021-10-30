@@ -1,0 +1,9 @@
+@import '../../assets/styles/style.scss';
+
+.login-form-field {
+	width: 400px;
+
+	@media (max-width: 480px) {
+		width: 250px;
+	}
+}
