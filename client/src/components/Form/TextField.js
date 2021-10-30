@@ -5,8 +5,8 @@ const TextField = ({ label, type, icon, fieldStyle, ...props }) => {
 	const [field, meta] = useField(props);
 
 	const text = (
-		<div className='field' style={fieldStyle}>
-			<label className='label has-text-grey-dark' htmlFor={field.name}>
+		<div className='field' style={{ ...fieldStyle, height: '80px' }}>
+			<label className='label m-0 has-text-grey-dark' htmlFor={field.name}>
 				{label}
 			</label>
 			<div className={`control ${icon ? 'has-icons-left' : ''}`}>
@@ -20,7 +20,31 @@ const TextField = ({ label, type, icon, fieldStyle, ...props }) => {
 				{icon && <span className='icon is-small is-left'>{icon}</span>}
 			</div>
 			<ErrorMessage
-				className='has-text-danger error'
+				className='has-text-danger error is-size-7'
+				component='div'
+				name={field.name}
+			/>
+		</div>
+	);
+
+	const password = (
+		<div className='field' style={{ ...fieldStyle, height: '80px' }}>
+			<label className='label m-0 has-text-grey-dark' htmlFor={field.name}>
+				{label}
+			</label>
+			<div className={`control ${icon ? 'has-icons-left' : ''}`}>
+				<input
+					type='password'
+					{...field}
+					{...props}
+					className={`input is-primary ${
+						meta.touched && meta.error && 'is-danger'
+					}`}
+				/>
+				{icon && <span className='icon is-small is-left'>{icon}</span>}
+			</div>
+			<ErrorMessage
+				className='has-text-danger error is-size-7'
 				component='div'
 				name={field.name}
 			/>
@@ -29,7 +53,7 @@ const TextField = ({ label, type, icon, fieldStyle, ...props }) => {
 
 	const textarea = (
 		<div className='field'>
-			<label className='label' htmlFor={field.name}>
+			<label className='label m-0' htmlFor={field.name}>
 				{label}
 			</label>
 			<div className='control'>
@@ -51,8 +75,8 @@ const TextField = ({ label, type, icon, fieldStyle, ...props }) => {
 
 	function typeCheck(type) {
 		switch (type) {
-			//   case 'password':
-			//     return password
+			case 'password':
+				return password;
 			case 'email':
 			case 'text':
 			case 'number':
