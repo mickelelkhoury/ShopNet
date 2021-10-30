@@ -15,13 +15,13 @@ export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 const actions = {
 	// GET ALL PRODUCTS
 	getAllProducts:
-		(currentPage = 1, keyword = '') =>
+		(currentPage = 1, keyword = '', price) =>
 		async (dispatch) => {
 			try {
 				dispatch({
 					type: ALL_PRODUCTS_REQUEST,
 				});
-				await getAllProducts(currentPage, keyword).then((response) => {
+				await getAllProducts(currentPage, keyword, price).then((response) => {
 					if (response.status === 200) {
 						dispatch({
 							type: ALL_PRODUCTS_SUCCESS,
