@@ -40,6 +40,101 @@ const initialState = {
 
 function auth(state = initialState, action) {
 	switch (action.type) {
+		case REGISTER_REQUEST:
+			return Object.assign({}, state, {
+				registerData: [],
+				registerLoading: true,
+				registerMessage: ['', ''],
+			});
+		case REGISTER_SUCCESS:
+			return Object.assign({}, state, {
+				registerData: action.payload.data,
+				registerLoading: false,
+				registerMessage: ['', action.payload.message],
+			});
+		case REGISTER_ERROR:
+			return Object.assign({}, state, {
+				registerData: [],
+				registerLoading: false,
+				registerMessage: [action.payload.message, ''],
+			});
+
+		case LOGIN_REQUEST:
+			return Object.assign({}, state, {
+				loginData: [],
+				loginLoading: true,
+				loginMessage: ['', ''],
+			});
+		case LOGIN_SUCCESS:
+			return Object.assign({}, state, {
+				loginData: action.payload.data,
+				loginLoading: false,
+				loginMessage: ['', action.payload.message],
+			});
+		case LOGIN_ERROR:
+			return Object.assign({}, state, {
+				loginData: [],
+				loginLoading: false,
+				loginMessage: [action.payload.message, ''],
+			});
+
+		case FORGOT_PASSWORD_REQUEST:
+			return Object.assign({}, state, {
+				forgotPasswordData: [],
+				forgotPasswordLoading: true,
+				forgotPasswordMessage: ['', ''],
+			});
+		case FORGOT_PASSWORD_SUCCESS:
+			return Object.assign({}, state, {
+				forgotPasswordData: action.payload.data,
+				forgotPasswordLoading: false,
+				forgotPasswordMessage: ['', action.payload.message],
+			});
+		case FORGOT_PASSWORD_ERROR:
+			return Object.assign({}, state, {
+				forgotPasswordData: [],
+				forgotPasswordLoading: false,
+				forgotPasswordMessage: [action.payload.message, ''],
+			});
+
+		case RESET_PASSWORD_REQUEST:
+			return Object.assign({}, state, {
+				resetPasswordData: [],
+				resetPasswordLoading: true,
+				resetPasswordMessage: ['', ''],
+			});
+		case RESET_PASSWORD_SUCCESS:
+			return Object.assign({}, state, {
+				resetPasswordData: action.payload.data,
+				resetPasswordLoading: false,
+				resetPasswordMessage: ['', action.payload.message],
+			});
+		case RESET_PASSWORD_ERROR:
+			return Object.assign({}, state, {
+				resetPasswordData: [],
+				resetPasswordLoading: false,
+				resetPasswordMessage: [action.payload.message, ''],
+			});
+
+		case LOGOUT_REQUEST:
+			return Object.assign({}, state, {
+				logoutData: [],
+				logoutLoading: true,
+				logoutMessage: ['', ''],
+			});
+		case LOGOUT_SUCCESS:
+			return Object.assign({}, state, {
+				logoutData: action.payload.data,
+				logoutLoading: false,
+				logoutMessage: ['', action.payload.message],
+			});
+		case LOGOUT_ERROR:
+			return Object.assign({}, state, {
+				logoutData: [],
+				logoutLoading: false,
+				logoutMessage: [action.payload.message, ''],
+			});
+
 		default:
 			return state;
 	}
