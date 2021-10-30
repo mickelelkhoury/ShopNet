@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
 const Product = require('../models/product.model.js');
 const connectDB = require('../config/database');
 
-const products = require('../data/products.json');
+const products = require('../data/generated.json');
 
 connectDB();
 

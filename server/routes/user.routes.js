@@ -8,10 +8,8 @@ const { isAuthenticatedUser, authorizeRoles } = require('../middlewares/auth');
 // AUTH ROUTES
 router.route('/register').post(userController.registerUser);
 router.route('/login').post(userController.loginUser);
-
 router.route('/password/forgot').post(userController.forgotPassword);
 router.route('/password/reset/:token').put(userController.resetPassword);
-
 router.route('/logout').get(userController.logout);
 
 // USER ROUTES

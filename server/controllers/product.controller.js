@@ -21,6 +21,8 @@ module.exports.getProducts = catchAsyncErrors(async (req, res, next) => {
 	const resPerPage = 8;
 	const productsCount = await Product.countDocuments();
 
+	// TODO: fetch min and max price
+
 	const apiFeatures = new APIFeatures(Product.find(), req.query)
 		.search()
 		.filter()
