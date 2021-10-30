@@ -34,6 +34,7 @@ const colors = {
 };
 
 const ProductDetails = ({
+	clearMessages,
 	getProductDetails,
 	productDetailsData,
 	productDetailsLoading,
@@ -49,6 +50,10 @@ const ProductDetails = ({
 	);
 	const [addBtnState, setAddBtnState] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
+
+	useEffect(() => {
+		clearMessages();
+	}, []);
 
 	useEffect(() => {
 		if (productDetailsData?.numOfReviews <= 0) {
@@ -226,6 +231,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 	getProductDetails: (data) => dispatch(productActions.getProductDetails(data)),
+	clearMessages: () => dispatch(productActions.clearMessages()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);

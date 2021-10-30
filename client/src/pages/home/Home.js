@@ -20,6 +20,7 @@ import Loading from '../../components/loading/Loading';
 import TextField from '../../components/Form/TextField';
 
 const Home = ({
+	clearMessages,
 	getAllProducts,
 	allProductsData,
 	allProductsLoading,
@@ -33,6 +34,10 @@ const Home = ({
 	});
 
 	const keyword = match.params.keyword;
+
+	useEffect(() => {
+		clearMessages();
+	}, []);
 
 	useEffect(() => {
 		getAllProducts(currentPage, keyword, price);
@@ -154,6 +159,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
 	getAllProducts: (currentPage, keyword, price) =>
 		dispatch(productActions.getAllProducts(currentPage, keyword, price)),
+	clearMessages: () => dispatch(productActions.clearMessages()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
