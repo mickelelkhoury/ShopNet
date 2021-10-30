@@ -13,6 +13,9 @@ import Footer from './components/layout/footer/Footer';
 import Home from './pages/home/Home';
 import ProductDetails from './pages/product/ProductDetails';
 
+// AUTH PAGES
+import Login from './pages/auth/Login';
+
 function App() {
 	return (
 		<Router>
@@ -27,6 +30,8 @@ function App() {
 						<Route exact path='/home' component={Home} />
 						<Route path='/search/:keyword' component={Home} />
 						<Route exact path='/product/:id' component={ProductDetails} />
+
+						<Route exact path='/login' component={Login} />
 					</Switch>
 				</div>
 				<Footer />
