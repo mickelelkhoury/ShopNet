@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Route } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
@@ -13,6 +14,8 @@ import Search from '../Search';
 import logo from '../../../assets/images/cart.svg';
 
 const Header = () => {
+	const history = useHistory();
+
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -46,7 +49,12 @@ const Header = () => {
 					<div className='navbar-end'>
 						<div className='navbar-item'>
 							<div className='buttons'>
-								<button className='button is-primary'>Log in</button>
+								<button
+									className='button is-primary'
+									onClick={() => history.push('/login')}
+								>
+									Log in
+								</button>
 								<button className='button is-light'>
 									<FontAwesomeIcon icon={faShoppingCart} />
 									<span className='cart-badge'>2</span>
