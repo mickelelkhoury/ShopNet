@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const cloudinary = require('cloudinary');
 
 const User = require('../models/user.model');
 
@@ -9,6 +10,12 @@ const sendEmail = require('../utils/sendEmail');
 
 // REGISTER USER => /api/v1/register
 module.exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+	const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+		folder: 'shopnetAvatars',
+		width: 150,
+		crop: 'scale',
+	});
+
 	const { name, email, password } = req.body;
 
 	const user = await User.create({
@@ -16,8 +23,8 @@ module.exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 		email,
 		password,
 		avatar: {
-			public_id: 'Avatars/img_avatar_sm2toq',
-			url: 'https://res.cloudinary.com/mickel/image/upload/v1627734959/Avatars/img_avatar_sm2toq.png',
+			public_id: result.public_id,
+			url: result.secure_url,
 		},
 	});
 
