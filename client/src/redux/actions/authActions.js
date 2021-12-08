@@ -32,7 +32,7 @@ export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 
 const actions = {
 	// REGISTER
-	register: (data) => async (dispatch) => {
+	register: (data, history) => async (dispatch) => {
 		try {
 			dispatch({
 				type: REGISTER_REQUEST,

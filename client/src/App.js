@@ -15,6 +15,7 @@ import ProductDetails from './pages/product/ProductDetails';
 
 // AUTH PAGES
 import Login from './pages/auth/Login';
+import Register from './pages/auth/Register';
 
 function App() {
 	return (
@@ -32,6 +33,7 @@ function App() {
 						<Route exact path='/product/:id' component={ProductDetails} />
 
 						<Route exact path='/login' component={Login} />
+						<Route exact path='/register' component={Register} />
 					</Switch>
 				</div>
 				<Footer />

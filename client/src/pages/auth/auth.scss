@@ -7,3 +7,29 @@
 		width: 250px;
 	}
 }
+
+.login-form-field-file {
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 1.5rem;
+
+	@media (max-width: 480px) {
+		width: 250px;
+	}
+	.file-field {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.avatar-img {
+			box-shadow: 0px 0px 6px rgba($color: #888888, $alpha: 0.5);
+		}
+
+		.file {
+			.file-name {
+				width: 250px;
+			}
+		}
+	}
+}
