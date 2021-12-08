@@ -22,16 +22,18 @@ const loginSchema = Yup.object().shape({
 	password: Yup.string().required('Password is required'),
 });
 
-const Login = ({ login, loginLoading, loginMessage, isAuthenticated }) => {
+const Login = ({ login, loginLoading, isAuthenticated, accessToken }) => {
 	const history = useHistory();
 
 	// FIXME: To fix re routing issue
-	console.log(isAuthenticated);
+	console.log(accessToken);
+
 	useEffect(() => {
 		if (isAuthenticated === true) {
-			history.push('/home');
+			console.log('32323');
+			history.push('/');
 		}
-	}, [isAuthenticated]);
+	}, [isAuthenticated, history]);
 
 	const handleSubmit = (values) => {
 		login(values, history);
@@ -107,8 +109,8 @@ const Login = ({ login, loginLoading, loginMessage, isAuthenticated }) => {
 const mapStateToProps = (state) => ({
 	loginData: state.auth.loginData,
 	loginLoading: state.auth.loginLoading,
-	loginMessage: state.auth.loginMessage,
 	isAuthenticated: state.auth.isAuthenticated,
+	accessToken: state.auth.accessToken,
 });
 
 const mapDispatchToProps = (dispatch) => ({

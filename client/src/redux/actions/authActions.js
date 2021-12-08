@@ -100,8 +100,14 @@ const actions = {
 						},
 					});
 					localStorage.setItem('access_token', response.data.token);
-					history.push('/');
+					history?.push('/');
 				} else {
+					dispatch({
+						type: LOGIN_ERROR,
+						payload: {
+							message: response.data.message,
+						},
+					});
 					toast.error(response.data.message, {
 						position: 'top-right',
 						autoClose: 5000,
@@ -110,12 +116,6 @@ const actions = {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-					});
-					dispatch({
-						type: LOGIN_ERROR,
-						payload: {
-							message: response.data.message,
-						},
 					});
 				}
 			});

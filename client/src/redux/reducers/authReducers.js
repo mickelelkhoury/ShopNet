@@ -49,18 +49,21 @@ function auth(state = initialState, action) {
 				registerData: [],
 				registerLoading: true,
 				registerMessage: ['', ''],
+				isAuthenticated: false,
 			});
 		case REGISTER_SUCCESS:
 			return Object.assign({}, state, {
 				registerData: action.payload.data,
 				registerLoading: false,
 				registerMessage: ['', action.payload.message],
+				isAuthenticated: true,
 			});
 		case REGISTER_ERROR:
 			return Object.assign({}, state, {
 				registerData: [],
 				registerLoading: false,
 				registerMessage: [action.payload.message, ''],
+				isAuthenticated: false,
 			});
 
 		case LOGIN_REQUEST:
@@ -68,8 +71,8 @@ function auth(state = initialState, action) {
 				loginData: [],
 				loginLoading: true,
 				loginMessage: ['', ''],
+				isAuthenticated: false,
 				accessToken: '',
-				// isAuthenticated: false,
 			});
 		case LOGIN_SUCCESS:
 			return Object.assign({}, state, {
