@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import {toast} from 'react-toastify'
 
 import {
 	register,
@@ -6,29 +6,29 @@ import {
 	forgotPassword,
 	resetPassword,
 	logout,
-} from '../../config/config';
+} from '../../config/config'
 
-export const REGISTER_REQUEST = 'REGISTER_REQUEST';
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_ERROR = 'REGISTER_ERROR';
+export const REGISTER_REQUEST = 'REGISTER_REQUEST'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_ERROR = 'REGISTER_ERROR'
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGIN_REQUEST = 'LOGIN_REQUEST'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_ERROR = 'LOGIN_ERROR'
 
-export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST';
-export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS';
-export const FORGOT_PASSWORD_ERROR = 'FORGOT_PASSWORD_ERROR';
+export const FORGOT_PASSWORD_REQUEST = 'FORGOT_PASSWORD_REQUEST'
+export const FORGOT_PASSWORD_SUCCESS = 'FORGOT_PASSWORD_SUCCESS'
+export const FORGOT_PASSWORD_ERROR = 'FORGOT_PASSWORD_ERROR'
 
-export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST';
-export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS';
-export const RESET_PASSWORD_ERROR = 'RESET_PASSWORD_ERROR';
+export const RESET_PASSWORD_REQUEST = 'RESET_PASSWORD_REQUEST'
+export const RESET_PASSWORD_SUCCESS = 'RESET_PASSWORD_SUCCESS'
+export const RESET_PASSWORD_ERROR = 'RESET_PASSWORD_ERROR'
 
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-export const LOGOUT_ERROR = 'LOGOUT_ERROR';
+export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
+export const LOGOUT_ERROR = 'LOGOUT_ERROR'
 
-export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES'
 
 const actions = {
 	// REGISTER
@@ -36,7 +36,7 @@ const actions = {
 		try {
 			dispatch({
 				type: REGISTER_REQUEST,
-			});
+			})
 			await register(data).then((response) => {
 				if (response.status === 200) {
 					dispatch({
@@ -45,7 +45,7 @@ const actions = {
 							data: response.data,
 							message: response.data.message,
 						},
-					});
+					})
 				} else {
 					toast.error(response.data.message, {
 						position: 'top-right',
@@ -55,17 +55,17 @@ const actions = {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-					});
+					})
 					dispatch({
 						type: REGISTER_ERROR,
 						payload: {
 							message: response.data.message,
 						},
-					});
+					})
 				}
-			});
+			})
 		} catch (error) {
-			toast.error(error.response.data.message || 'Error registering', {
+			toast.error(error.message || 'Error registering', {
 				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -73,13 +73,13 @@ const actions = {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-			});
+			})
 			dispatch({
 				type: REGISTER_ERROR,
 				payload: {
-					message: error.response.data.message || 'Error registering',
+					message: error.message || 'Error registering',
 				},
-			});
+			})
 		}
 	},
 
@@ -88,7 +88,7 @@ const actions = {
 		try {
 			dispatch({
 				type: LOGIN_REQUEST,
-			});
+			})
 			await login(data).then((response) => {
 				if (response.status === 200) {
 					dispatch({
@@ -98,16 +98,10 @@ const actions = {
 							accessToken: response.data.token,
 							message: response.data.message,
 						},
-					});
-					localStorage.setItem('access_token', response.data.token);
-					history?.push('/');
+					})
+					localStorage.setItem('access_token', response.data.token)
+					history?.push('/')
 				} else {
-					dispatch({
-						type: LOGIN_ERROR,
-						payload: {
-							message: response.data.message,
-						},
-					});
 					toast.error(response.data.message, {
 						position: 'top-right',
 						autoClose: 5000,
@@ -116,11 +110,17 @@ const actions = {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-					});
+					})
+					dispatch({
+						type: LOGIN_ERROR,
+						payload: {
+							message: response.data.message,
+						},
+					})
 				}
-			});
+			})
 		} catch (error) {
-			toast.error(error.response.data.message || 'Error logging in', {
+			toast.error(error.message || 'Error logging in', {
 				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -128,13 +128,13 @@ const actions = {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-			});
+			})
 			dispatch({
 				type: LOGIN_ERROR,
 				payload: {
-					message: error.response.data.message || 'Error logging in',
+					message: error.message || 'Error logging in',
 				},
-			});
+			})
 		}
 	},
 
@@ -143,7 +143,7 @@ const actions = {
 		try {
 			dispatch({
 				type: FORGOT_PASSWORD_REQUEST,
-			});
+			})
 			await forgotPassword(data).then((response) => {
 				if (response.status === 200) {
 					dispatch({
@@ -152,7 +152,7 @@ const actions = {
 							data: response.data,
 							message: response.data.message,
 						},
-					});
+					})
 				} else {
 					toast.error(response.data.message, {
 						position: 'top-right',
@@ -162,17 +162,17 @@ const actions = {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-					});
+					})
 					dispatch({
 						type: FORGOT_PASSWORD_ERROR,
 						payload: {
 							message: response.data.message,
 						},
-					});
+					})
 				}
-			});
+			})
 		} catch (error) {
-			toast.error(error.response.data.message || 'Error sending email', {
+			toast.error(error.message || 'Error sending email', {
 				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -180,13 +180,13 @@ const actions = {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-			});
+			})
 			dispatch({
 				type: FORGOT_PASSWORD_ERROR,
 				payload: {
-					message: error.response.data.message || 'Error sending email',
+					message: error.message || 'Error sending email',
 				},
-			});
+			})
 		}
 	},
 
@@ -195,7 +195,7 @@ const actions = {
 		try {
 			dispatch({
 				type: RESET_PASSWORD_REQUEST,
-			});
+			})
 			await resetPassword(data).then((response) => {
 				if (response.status === 200) {
 					dispatch({
@@ -204,7 +204,7 @@ const actions = {
 							data: response.data,
 							message: response.data.message,
 						},
-					});
+					})
 				} else {
 					toast.error(response.data.message, {
 						position: 'top-right',
@@ -214,17 +214,17 @@ const actions = {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-					});
+					})
 					dispatch({
 						type: RESET_PASSWORD_ERROR,
 						payload: {
 							message: response.data.message,
 						},
-					});
+					})
 				}
-			});
+			})
 		} catch (error) {
-			toast.error(error.response.data.message || 'Error resetting password', {
+			toast.error(error.message || 'Error resetting password', {
 				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -232,13 +232,13 @@ const actions = {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-			});
+			})
 			dispatch({
 				type: RESET_PASSWORD_ERROR,
 				payload: {
-					message: error.response.data.message || 'Error resetting password',
+					message: error.message || 'Error resetting password',
 				},
-			});
+			})
 		}
 	},
 
@@ -247,7 +247,7 @@ const actions = {
 		try {
 			dispatch({
 				type: LOGOUT_REQUEST,
-			});
+			})
 			await logout().then((response) => {
 				if (response.status === 200) {
 					dispatch({
@@ -256,8 +256,8 @@ const actions = {
 							data: response.data,
 							message: response.data.message,
 						},
-					});
-					localStorage.removeItem('access_token');
+					})
+					localStorage.removeItem('access_token')
 				} else {
 					toast.error(response.data.message, {
 						position: 'top-right',
@@ -267,17 +267,17 @@ const actions = {
 						pauseOnHover: true,
 						draggable: true,
 						progress: undefined,
-					});
+					})
 					dispatch({
 						type: LOGOUT_ERROR,
 						payload: {
 							message: response.data.message,
 						},
-					});
+					})
 				}
-			});
+			})
 		} catch (error) {
-			toast.error(error.response.data.message || 'Error logging out', {
+			toast.error(error.message || 'Error logging out', {
 				position: 'top-right',
 				autoClose: 5000,
 				hideProgressBar: false,
@@ -285,13 +285,13 @@ const actions = {
 				pauseOnHover: true,
 				draggable: true,
 				progress: undefined,
-			});
+			})
 			dispatch({
 				type: LOGOUT_ERROR,
 				payload: {
-					message: error.response.data.message || 'Error logging out',
+					message: error.message || 'Error logging out',
 				},
-			});
+			})
 		}
 	},
 
@@ -299,8 +299,8 @@ const actions = {
 	clearMessages: () => async (dispatch) => {
 		dispatch({
 			type: CLEAR_MESSAGES,
-		});
+		})
 	},
-};
+}
 
-export default actions;
+export default actions

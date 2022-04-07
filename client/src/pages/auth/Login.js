@@ -1,43 +1,39 @@
-import React, { useEffect } from 'react';
-import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
-import { useHistory } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import React, {useEffect} from 'react'
+import {Formik, Form} from 'formik'
+import * as Yup from 'yup'
+import {useHistory} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faEnvelope, faLock} from '@fortawesome/free-solid-svg-icons'
 
 // REDUX
-import { connect } from 'react-redux';
-import authActions from '../../redux/actions/authActions';
+import {connect} from 'react-redux'
+import authActions from '../../redux/actions/authActions'
 
 // SCSS
-import './auth.scss';
+import './auth.scss'
 
 // COMPONENTS
-import MetaData from '../../components/layout/MetaData';
-import MainTextHeader from '../../components/headers/MainTextHeader';
-import TextField from '../../components/Form/TextField';
+import MetaData from '../../components/layout/MetaData'
+import MainTextHeader from '../../components/headers/MainTextHeader'
+import TextField from '../../components/Form/TextField'
 
 const loginSchema = Yup.object().shape({
 	email: Yup.string().required('Email is required'),
 	password: Yup.string().required('Password is required'),
-});
+})
 
-const Login = ({ login, loginLoading, isAuthenticated, accessToken }) => {
-	const history = useHistory();
-
-	// FIXME: To fix re routing issue
-	console.log(accessToken);
+const Login = ({login, loginLoading, isAuthenticated, accessToken}) => {
+	const history = useHistory()
 
 	useEffect(() => {
-		if (isAuthenticated === true) {
-			console.log('32323');
-			history.push('/');
+		if (localStorage.getItem('access_token')) {
+			history.push('/')
 		}
-	}, [isAuthenticated, history]);
+	}, [localStorage.getItem('access_token'), history])
 
 	const handleSubmit = (values) => {
-		login(values, history);
-	};
+		login(values, history)
+	}
 
 	return (
 		<>
@@ -47,7 +43,7 @@ const Login = ({ login, loginLoading, isAuthenticated, accessToken }) => {
 					<div className='card-content'>
 						<MainTextHeader title='Login' />
 						<Formik
-							initialValues={{ email: '', password: '' }}
+							initialValues={{email: '', password: ''}}
 							onSubmit={handleSubmit}
 							validationSchema={loginSchema}
 						>
@@ -103,18 +99,18 @@ const Login = ({ login, loginLoading, isAuthenticated, accessToken }) => {
 				</div>
 			</section>
 		</>
-	);
-};
+	)
+}
 
 const mapStateToProps = (state) => ({
 	loginData: state.auth.loginData,
 	loginLoading: state.auth.loginLoading,
 	isAuthenticated: state.auth.isAuthenticated,
 	accessToken: state.auth.accessToken,
-});
+})
 
 const mapDispatchToProps = (dispatch) => ({
 	login: (data, history) => dispatch(authActions.login(data, history)),
-});
+})
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login)
