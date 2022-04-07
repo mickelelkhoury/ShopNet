@@ -1,17 +1,15 @@
-import React from 'react';
+import React from 'react'
 
 // SCSS
-import './Loading.scss';
+import './Loading.scss'
 
 const Loading = () => {
 	return (
-		<div className='spinners'>
-			<div className='spinner-block'>
-				<div className='spinner spinner-1'></div>
-			</div>
+		<div className='loading'>
+			<div class='loader'></div>
 			<h1>Loading...</h1>
 		</div>
-	);
-};
+	)
+}
 
-export default Loading;
+export default Loading
